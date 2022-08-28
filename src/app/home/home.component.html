@@ -3,14 +3,13 @@
 <div class="container w-full max-w-[960px] px-1 mx-auto ">
 
     <div class="bg-gray-100 w-[700px] p-6" *ngFor="let data of posts">
-
       <div class="flex gap-x-2 items-center">
-        <div class="rounded-full bg-gray-400 hover:bg-gray-300 w-[35px] h-[35px] flex items-center justify-center">
-          <p class="text-white">J</p>
+        <div class="hover:bg-gray-300 rounded-full w-[35px] h-[35px] flex items-center justify-center">
+          <img class="rounded-full" [src]="data.owner.picture">
         </div>
         <div class="grid">
           <a href=""><p class="text-black font-semibold hover:underline">{{data.owner.firstName}} {{ data.owner.lastName }} </p></a>
-          <a href=""><p class="text-sm text-gray-400 hover:underline">{{data.publishDate}}</p></a>
+          <a href=""><p class="text-sm text-gray-400 hover:underline">{{data.publishDate | date:'medium'}}</p></a>
         </div>
       </div>
 
@@ -35,18 +34,16 @@
         </div>
 
         <!-- Coment Section -->
-        <div class="flex gap-x-2 items-center">
-          <div class="rounded-full bg-gray-400 hover:bg-gray-300 w-[35px] h-[35px] flex items-center justify-center">
-            <p class="text-white">B</p>
+        <div class="flex gap-x-2 items-center" *ngFor="let data2 of com">
+          <div class="bg-gray-400 rounded-full hover:bg-gray-300 w-[35px] h-[35px] flex items-center justify-center">
+            <img class="rounded-full" [src]="data2.owner.picture">
           </div>
           <div class="grid bg-gray-200 rounded-lg p-3">
-            <a href=""><p class="text-black font-semibold hover:underline">Boy Wiliam</p></a>
-            <p class="text-black">Anjay Sunmori, kapan-kapan ajakin ya</p>
+            <a href=""><p class="text-black font-semibold hover:underline">{{data2.owner.firstName}} {{data2.owner.lastName}}</p></a>
+            <p class="text-black">{{data2.message}}</p>
           </div>
         </div>
-
       </div>
-
     </div>
 
 </div>
