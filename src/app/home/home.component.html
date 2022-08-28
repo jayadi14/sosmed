@@ -5,7 +5,7 @@
     <div class="bg-gray-100 w-[700px] p-6" *ngFor="let data of posts">
       <div class="flex gap-x-2 items-center">
         <div class="hover:bg-gray-300 rounded-full w-[35px] h-[35px] flex items-center justify-center">
-          <img class="rounded-full" [src]="data.owner.picture">
+          <a href=""><img class="rounded-full" [src]="data.owner.picture"></a>
         </div>
         <div class="grid">
           <a href=""><p class="text-black font-semibold hover:underline">{{data.owner.firstName}} {{ data.owner.lastName }} </p></a>
@@ -36,11 +36,15 @@
         <!-- Coment Section -->
         <div class="flex gap-x-2 items-center" *ngFor="let data2 of com">
           <div class="bg-gray-400 rounded-full hover:bg-gray-300 w-[35px] h-[35px] flex items-center justify-center">
-            <img class="rounded-full" [src]="data2.owner.picture">
+           <a href=""> <img class="rounded-full" [src]="data2.owner.picture"> </a>
           </div>
           <div class="grid bg-gray-200 rounded-lg p-3">
             <a href=""><p class="text-black font-semibold hover:underline">{{data2.owner.firstName}} {{data2.owner.lastName}}</p></a>
             <p class="text-black">{{data2.message}}</p>
+            <div class="flex gap-x-2">
+              <p class="text-gray-400 hover:underline">Like</p>
+              <p class="text-gray-400 hover:underline">Reply</p>
+            </div>
           </div>
         </div>
       </div>
