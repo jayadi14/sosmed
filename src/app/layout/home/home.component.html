@@ -1,0 +1,40 @@
+<br><br>
+<!-- Content -->
+<div class="container w-full max-w-[960px] px-1 mx-auto ">
+
+  <!-- Create Post -->
+  <div class="flex gap-x-3">
+    <a href=""><img class="rounded-full w-[50px]" src="assets/img/sakayanagi.jpg"></a>
+    <div class="grid gap-y-3 w-full max-w-[625px]">
+      <form class="grid items-center gap-y-3 p-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="text" class="bg-gray-200 focus:outline-none rounded-lg text-sm w-full p-5" placeholder="What do you think ?" required>
+        <input type="text" formControlName="image" class="bg-gray-200 focus:outline-none rounded-lg text-sm w-full p-5" placeholder="url" required>
+        <input type="text" formControlName="owner" hidden>
+        <button type="submit" [disabled]="!profileForm.valid" class="bg-blue-400 text-white rounded-lg p-2">Send</button>
+      </form>
+    </div>
+  </div><br>
+
+    <div class="w-[700px] p-6" *ngFor="let data of posts">
+      <!-- Owner Posts -->
+      <div class="flex gap-x-2 items-center">
+        <div class="hover:bg-gray-300 rounded-full w-[35px] h-[35px] flex items-center justify-center">
+          <a href=""><img class="rounded-full" [src]="data.owner.picture"></a>
+        </div>
+        <div class="grid">
+          <a href=""><p class="text-black font-semibold hover:underline">{{data.owner.firstName}} {{ data.owner.lastName }} </p></a>
+          <a href=""><p class="text-sm text-gray-400 hover:underline">{{data.publishDate | date:'medium'}}</p></a>
+        </div>
+        <button (click)="delete(data.id)" class="text-right">Delete</button>
+      </div>
+
+
+      <!-- POST -->
+      <div class="grid gap-y-3">
+          <p class="text-lg text-black">{{data.text}}</p>
+          <a [routerLink]="['/postDetail', data.id]" routerLinkActive="active"><img [src]="data.image"></a>
+      </div>
+
+    </div>
+
+</div>

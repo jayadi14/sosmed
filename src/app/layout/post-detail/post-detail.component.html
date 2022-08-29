@@ -1,0 +1,54 @@
+<br><br>
+<div class="container w-full max-w-[960px] px-1 mx-auto ">
+    <div class="flex gap-x-5" *ngIf="posts">
+        <a [routerLink]="['/postDetail', posts.id]" routerLinkActive="active"><img class="w-[500px]" [src]="posts.image"></a>
+      <div class="">
+
+        <!-- Owner Posts -->
+        <div class="flex gap-x-3">
+          <a href=""><img class="hover:bg-gray-300 w-[35px] h-[35px] rounded-full" [src]="posts.owner.picture"></a>
+          <div class="grid">
+            <a href="">
+              <p class="text-black font-semibold hover:underline">{{posts.owner.firstName}} {{ posts.owner.lastName }} </p>
+              <p class="text-sm text-gray-400 hover:underline">{{posts.publishDate | date:'medium'}}</p>
+            </a>
+          </div>
+        </div> <br>
+
+        <!-- Icons -->
+        <div class="flex flex-col-2 gap-x-5">
+          <div class="flex gap-x-2 hover:text-blue-500">
+            <fa-icon [icon]="falike" style="color: black"></fa-icon>
+            <p>{{posts.likes}}</p>
+          </div>
+          <div class="flex gap-x-2 hover:text-blue-500">
+            <button>
+              <fa-icon [icon]="facoment" style="color: black"></fa-icon>
+            </button>
+          </div>
+          <div class="flex gap-x-2 hover:text-blue-500">
+            <fa-icon [icon]="fashare" style="color: black"></fa-icon>
+          </div>
+        </div>
+
+
+        <!-- Comments -->
+        <div class="flex gap-x-2 items-center" *ngFor="let data2 of com">
+          <div class="rounded-full w-[35px] h-[35px] flex items-center justify-center">
+           <a href=""> <img class="rounded-full" [src]="data2.owner.picture"> </a>
+          </div>
+          <div class="rounded-lg p-3">
+            <a href=""><p class="text-black font-semibold hover:underline">{{data2.owner.firstName}} {{data2.owner.lastName}}</p></a>
+            <p class="text-black">{{data2.message}}</p>
+            <div class="flex gap-x-2">
+              <p class="text-gray-400 hover:underline">Like</p>
+              <p class="text-gray-400 hover:underline">Reply</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+</div>
+<br><br>
