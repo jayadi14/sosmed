@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { faBell, faComment, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-
+import { faBell, faComment, faRightToBracket, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post-detail',
@@ -13,20 +13,29 @@ export class PostDetailComponent implements OnInit {
 
   constructor(private http: HttpClient, private route:ActivatedRoute) {
     this.postId = this.route.snapshot.paramMap.get('id');
-    this.comId = this.route.snapshot.paramMap.get('id');
+    this.addcomForm.patchValue({post: this.postId})
     this.getPost()
     this.getComent()
    }
+
+   addcomForm = new FormGroup({
+    message: new FormControl(''),
+    owner: new FormControl('630743a757aed83e137c2bd2'),
+    post: new FormControl(''),
+  });
+
+
 
   fabell = faBell;
   falike = faThumbsUp;
   facoment = faComment;
   fashare = faShare;
+  faenter = faRightToBracket;
 
   posts: any;
   com: any;
   postId?: string | null;
-  comId?: string | null;
+  isSubmitAllow =true;
 
   getPost(){
     const headers = new HttpHeaders({"app-id": "63044dfc6a97404475895aa4"});
@@ -43,9 +52,34 @@ export class PostDetailComponent implements OnInit {
     let url="https://dummyapi.io/data/v1/post/" + this.postId + "/comment";
     this.http.get(url,requestOptions).subscribe((com : any) => {
       this.com = com.data;
-      console.log(com)
     });
   }
+
+  addCom(){
+    this.isSubmitAllow = false;
+    const headers = new HttpHeaders({"app-id": "63044dfc6a97404475895aa4"});
+    const requestOptions = { headers: headers };
+    let url="https://dummyapi.io/data/v1/comment/create";
+    this.http.post(url,this.addcomForm.value,requestOptions).subscribe(() => {
+    this.isSubmitAllow = true;
+      this.getComent()
+      this.addcomForm.get('message')?.reset()
+    },err=>{
+    this.isSubmitAllow = true;
+    });
+  }
+
+  delete(id:string){
+    const headers = new HttpHeaders({"app-id": "63044dfc6a97404475895aa4"});
+    const requestOptions = { headers: headers };
+    let url="https://dummyapi.io/data/v1/comment/" + id;
+    this.http.delete(url,requestOptions).subscribe(()=>{
+      this.getComent()
+    })
+  }
+
+
+
 
   ngOnInit(): void {
   }

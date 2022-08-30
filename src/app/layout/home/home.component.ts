@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   facoment = faComment;
   fashare = faShare;
   faimg = faImage;
+  isSubmitAllow =true;
+
 
   constructor(private http: HttpClient, private route:ActivatedRoute) {
     this.getData()
@@ -34,11 +36,17 @@ export class HomeComponent implements OnInit {
   });
 
   onSubmit(){
+    this.isSubmitAllow = false;
     const headers = new HttpHeaders({"app-id": "63044dfc6a97404475895aa4"});
     const requestOptions = { headers: headers };
     let url="https://dummyapi.io/data/v1/post/create";
     this.http.post(url,this.profileForm.value,requestOptions).subscribe (() =>{
-      window.location.reload()
+    this.isSubmitAllow = true;
+      this.getData()
+      this.profileForm.get('text')?.reset()
+      this.profileForm.get('image')?.reset()
+    },err => {
+      this.isSubmitAllow = true;
     });
   }
 
@@ -57,7 +65,6 @@ export class HomeComponent implements OnInit {
     let url="https://dummyapi.io/data/v1/post/" + id;
     this.http.delete(url,requestOptions).subscribe(()=>{
       this.getData()
-      window.location.reload()
     })
   }
 

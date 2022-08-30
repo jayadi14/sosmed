@@ -1,19 +1,22 @@
 <br><br>
 <div class="container w-full max-w-[960px] px-1 mx-auto ">
     <div class="flex gap-x-5" *ngIf="posts">
-        <a [routerLink]="['/postDetail', posts.id]" routerLinkActive="active"><img class="w-[500px]" [src]="posts.image"></a>
+        <a [routerLink]="['/postDetail', posts.id]" routerLinkActive="active"><img class="w-full max-w-[500px]" [src]="posts.image"></a>
       <div class="">
 
         <!-- Owner Posts -->
         <div class="flex gap-x-3">
           <a href=""><img class="hover:bg-gray-300 w-[35px] h-[35px] rounded-full" [src]="posts.owner.picture"></a>
-          <div class="grid">
+          <div class="">
             <a href="">
               <p class="text-black font-semibold hover:underline">{{posts.owner.firstName}} {{ posts.owner.lastName }} </p>
               <p class="text-sm text-gray-400 hover:underline">{{posts.publishDate | date:'medium'}}</p>
             </a>
           </div>
-        </div> <br>
+        </div>
+        <div>
+          <p class="text-lg text-black">{{posts.text}}</p>
+        </div>
 
         <!-- Icons -->
         <div class="flex flex-col-2 gap-x-5">
@@ -27,7 +30,7 @@
             </button>
           </div>
           <div class="flex gap-x-2 hover:text-blue-500">
-            <fa-icon [icon]="fashare" style="color: black"></fa-icon>
+            <button><fa-icon [icon]="fashare" style="color: black"></fa-icon></button>
           </div>
         </div>
 
@@ -43,10 +46,37 @@
             <div class="flex gap-x-2">
               <p class="text-gray-400 hover:underline">Like</p>
               <p class="text-gray-400 hover:underline">Reply</p>
+              <p class="text-gray-400 hover:underline">{{data2.publishDate | date:'medium'}}</p>
             </div>
           </div>
+
+          <!-- Button Control Delete and Edit -->
+          <div class="">
+            <div class="group relative dropdown rounded-full hover:bg-gray-200 hover:scale-125 w-[35px] h-[35px]">
+              <button class="block py-2 pr-4 pl-3">...</button>
+              <div class="group-hover:block absolute hidden h-auto">
+                <div class="top-0 w-30 bg-white shadow px-3 py-2">
+                  <div class="py-1">
+                    <button (click)="delete(data2.id)" class="text-base hover:text-red-600 cursor-pointer">Delete</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
+        <!-- Add Coment -->
+        <div class="flex gap-x-2 items-center">
+          <div class="rounded-full w-[35px] h-[35px] flex items-center justify-center">
+            <a href=""> <img class="rounded-full" src="assets/img/sakayanagi.jpg"> </a>
+          </div>
+          <div class="flex gap-x-2">
+            <form [formGroup]="addcomForm" (ngSubmit)="addCom()">
+              <input type="text" formControlName="message" class="bg-gray-200 focus:outline-none p-2 rounded-xl" placeholder="Add Comment">
+              <button type="submit" class="bg-blue-400 hidden" [disabled]="!isSubmitAllow"></button>
+            </form>
+          </div>
+        </div>
 
       </div>
     </div>

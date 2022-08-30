@@ -1,0 +1,19 @@
+<br><br>
+
+<!-- Edit -->
+<div class="container w-full max-w-[960px] px-1 mx-auto ">
+  <div class="flex gap-x-3">
+    <a href=""><img class="rounded-full w-[50px]" src="assets/img/sakayanagi.jpg"></a>
+    <div class="grid gap-y-3 w-full max-w-[625px]">
+      <form class="grid items-center gap-y-3 p-3" [formGroup]="updateForm" (ngSubmit)="update()">
+        <input type="text" formControlName="text" class="bg-gray-200 focus:outline-none rounded-lg text-sm w-full p-5"
+          placeholder="What do you think ?" required>
+        <input type="text" formControlName="image" class="bg-gray-200 focus:outline-none rounded-lg text-sm w-full p-5"
+          placeholder="url" required>
+        <input type="text" formControlName="owner" hidden>
+        <button type="submit" [disabled]="!updateForm.valid"
+          class="bg-blue-400 text-white rounded-lg p-2">Send</button>
+      </form>
+    </div>
+  </div>
+</div>

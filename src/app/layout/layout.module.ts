@@ -8,13 +8,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutComponent } from './layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HomeComponent,
     NavbarComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    EditPostComponent
   ],
   imports: [
     CommonModule,
