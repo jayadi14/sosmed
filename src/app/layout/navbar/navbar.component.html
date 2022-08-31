@@ -9,12 +9,12 @@
       <input type="search" id="search" class="block p-3 pl-10 w-full text-sm text-gray-500 bg-gray-50 rounded-2xl border border-gray-300" placeholder="Search" required>
     </div>
     <div class="flex gap-x-2">
-      <a href=""><div class="rounded-full bg-gray-400 hover:bg-gray-300 w-[35px] h-[35px] flex items-center justify-center">
-        <fa-icon [icon]="fabell" style="color: white"></fa-icon>
+      <a [routerLink]="['/addUser']" routerLinkActive="active"><div class="rounded-full bg-blue-500 hover:bg-blue-300 w-[35px] h-[35px] flex items-center justify-center">
+        <fa-icon [icon]="faplus" style="color: white"></fa-icon>
       </div></a>
-      <div class="rounded-full bg-gray-400 hover:bg-gray-300 hover:scale-125 w-[35px] h-[35px] flex items-center justify-center">
-        <img class="rounded-full w-[50px]" src="assets/img/sakayanagi.jpg">
-      </div>
+      <a [routerLink]="['/userList']" routerLinkActive="active"> <div class="rounded-full bg-blue-500 hover:bg-blue-300 hover:scale-125 w-[35px] h-[35px] flex items-center justify-center">
+        <fa-icon [icon]="fauser" style="color: white"></fa-icon>
+      </div></a>
     </div>
   </div>
 </nav>

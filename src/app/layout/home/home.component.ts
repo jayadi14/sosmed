@@ -32,8 +32,10 @@ export class HomeComponent implements OnInit {
   profileForm = new FormGroup({
     text: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required),
-    owner: new FormControl('630743a757aed83e137c2bd2', Validators.required)
+    owner: new FormControl('630743a757aed83e137c2bd2')
   });
+
+
 
   onSubmit(){
     this.isSubmitAllow = false;

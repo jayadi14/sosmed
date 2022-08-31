@@ -1,8 +1,8 @@
 <br><br>
 <div class="container w-full max-w-[960px] px-1 mx-auto ">
-    <div class="flex gap-x-5" *ngIf="posts">
-        <a [routerLink]="['/postDetail', posts.id]" routerLinkActive="active"><img class="w-full max-w-[500px]" [src]="posts.image"></a>
-      <div class="">
+    <div class="md:flex gap-x-5" *ngIf="posts">
+        <img class="w-full md:max-w-[500px]" [src]="posts.image">
+      <div class="space-y-1"><br>
 
         <!-- Owner Posts -->
         <div class="flex gap-x-3">
@@ -21,7 +21,7 @@
         <!-- Icons -->
         <div class="flex flex-col-2 gap-x-5">
           <div class="flex gap-x-2 hover:text-blue-500">
-            <fa-icon [icon]="falike" style="color: black"></fa-icon>
+            <button (click)="addLike()"><fa-icon [icon]="falike" style="color: black"></fa-icon></button>
             <p>{{posts.likes}}</p>
           </div>
           <div class="flex gap-x-2 hover:text-blue-500">
@@ -44,8 +44,6 @@
             <a href=""><p class="text-black font-semibold hover:underline">{{data2.owner.firstName}} {{data2.owner.lastName}}</p></a>
             <p class="text-black">{{data2.message}}</p>
             <div class="flex gap-x-2">
-              <p class="text-gray-400 hover:underline">Like</p>
-              <p class="text-gray-400 hover:underline">Reply</p>
               <p class="text-gray-400 hover:underline">{{data2.publishDate | date:'medium'}}</p>
             </div>
           </div>
@@ -73,7 +71,7 @@
           <div class="flex gap-x-2">
             <form [formGroup]="addcomForm" (ngSubmit)="addCom()">
               <input type="text" formControlName="message" class="bg-gray-200 focus:outline-none p-2 rounded-xl" placeholder="Add Comment">
-              <button type="submit" class="bg-blue-400 hidden" [disabled]="!isSubmitAllow"></button>
+              <button type="submit" class="bg-blue-400 hidden" [disabled]="!isSubmitAllow" [disabled]="addcomForm.invalid"></button>
             </form>
           </div>
         </div>

@@ -8,17 +8,18 @@
     <div class="grid gap-y-3 w-full max-w-[625px]">
       <form class="grid items-center gap-y-3 p-3" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <input type="text" formControlName="text" class="bg-gray-200 focus:outline-none rounded-lg text-sm w-full p-5"
-          placeholder="What do you think ?" required>
+          placeholder="What do you think ?">
+
         <input type="text" formControlName="image" class="bg-gray-200 focus:outline-none rounded-lg text-sm w-full p-5"
           placeholder="url" required>
         <input type="text" formControlName="owner" hidden>
-        <button type="submit" [disabled]="!isSubmitAllow"
+        <button type="submit" [disabled]="!isSubmitAllow" [disabled]="profileForm.invalid"
           class="bg-blue-400 text-white rounded-lg p-2">Send</button>
       </form>
     </div>
   </div><br>
 
-  <div class="w-[700px] p-6" *ngFor="let data of posts">
+  <div class="md:w-[700px] p-6" *ngFor="let data of posts">
     <!-- Owner Posts -->
     <div class="flex gap-x-2 items-center">
       <div class="hover:bg-gray-300 rounded-full w-[35px] h-[35px] flex items-center justify-center">
@@ -34,7 +35,7 @@
       </div>
 
       <!-- Button Control Delete and Edit -->
-      <div class="ml-auto">
+      <div class="md:ml-auto">
         <div class="group relative dropdown rounded-full hover:bg-gray-200 hover:scale-125 w-[35px] h-[35px]">
           <button class="block py-2 pr-4 pl-3">...</button>
           <div class="group-hover:block absolute hidden h-auto">

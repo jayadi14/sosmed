@@ -9,6 +9,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutComponent } from './layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { EditPostComponent } from './edit-post/edit-post.component';
     HomeComponent,
     NavbarComponent,
     PostDetailComponent,
-    EditPostComponent
+    EditPostComponent,
+    AddUserComponent,
+    UserListComponent,
+    UserUpdateComponent
   ],
   imports: [
     CommonModule,

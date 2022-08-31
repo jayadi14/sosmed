@@ -19,9 +19,9 @@ export class PostDetailComponent implements OnInit {
    }
 
    addcomForm = new FormGroup({
-    message: new FormControl(''),
+    message: new FormControl('', Validators.required),
     owner: new FormControl('630743a757aed83e137c2bd2'),
-    post: new FormControl(''),
+    post: new FormControl('', Validators.required),
   });
 
 
@@ -76,6 +76,17 @@ export class PostDetailComponent implements OnInit {
     this.http.delete(url,requestOptions).subscribe(()=>{
       this.getComent()
     })
+  }
+
+  addLike(){
+    const headers = new HttpHeaders({"app-id": "63044dfc6a97404475895aa4"});
+    const requestOptions = { headers: headers };
+    let url="https://dummyapi.io/data/v1/post/" + this.postId;
+    this.posts.likes = Number(this.posts.likes) + 1
+    this.http.put(url,this.posts,requestOptions).subscribe((result:any) => {
+      this.posts = result
+      this.getComent()
+    });
   }
 
 

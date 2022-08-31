@@ -1,0 +1,30 @@
+<br><br><br>
+<div class="container w-full max-w-[1004px] px-1 mx-auto">
+
+  <div *ngIf="alert" class="w-full flex gap-x-2 bg-green-200 border border-green-400 text-green-700 p-1 rounded relative">
+    <strong class="font-bold text-sm">Success !</strong>
+    <p class="text-sm">Your data has been Deleted Successfully.</p>
+    <button type="button" (click)="closeAlert()" class="close ml-auto"><strong>x</strong></button>
+  </div>
+
+  <div *ngIf="eror" class="w-full flex gap-x-2 bg-red-200 border border-red-400 text-red-700 p-1 rounded relative">
+    <strong class="font-bold text-sm">Failed !</strong>
+    <p class="text-sm">Your data has not Deleted</p>
+    <button type="button" (click)="closeEror()" class="close ml-auto"><strong>x</strong></button>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-x-10 gap-y-7">
+    <div class="md:max-w-prose rounded overflow-hidden shadow-lg" *ngFor="let data of posts" >
+      <img class="w-full max-w-[200px]" [src]="data.picture">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{data.firstName}} {{data.lastName}}</div>
+        <div class="flex gap-x-2">
+          <button [routerLink]="['/userUpdate', data.id]" routerLinkActive="active" class="bg-blue-500 px-3 py-2 rounded text-white">Edit</button>
+          <button (click)="delete(data.id)" class="bg-red-500 px-3 py-2 rounded text-white">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

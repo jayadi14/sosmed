@@ -2,6 +2,11 @@
 
 <!-- Edit -->
 <div class="container w-full max-w-[960px] px-1 mx-auto ">
+  <div *ngIf="alert" class="w-full md:max-w-[680px] flex gap-x-2 bg-green-200 border border-green-400 text-green-700 p-2 rounded relative">
+    <strong class="font-bold">Success !</strong>
+    <p>Your data has been Updated Successfully.</p>
+    <button type="button" (click)="closeAlert()" class="close ml-auto"><strong>x</strong></button>
+  </div><br>
   <div class="flex gap-x-3">
     <a href=""><img class="rounded-full w-[50px]" src="assets/img/sakayanagi.jpg"></a>
     <div class="grid gap-y-3 w-full max-w-[625px]">
@@ -11,7 +16,7 @@
         <input type="text" formControlName="image" class="bg-gray-200 focus:outline-none rounded-lg text-sm w-full p-5"
           placeholder="url" required>
         <input type="text" formControlName="owner" hidden>
-        <button type="submit" [disabled]="!updateForm.valid"
+        <button type="submit" [disabled]="!isSubmitAllow" [disabled]="!updateForm.valid"
           class="bg-blue-400 text-white rounded-lg p-2">Send</button>
       </form>
     </div>

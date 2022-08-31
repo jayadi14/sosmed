@@ -15,9 +15,11 @@ export class EditPostComponent implements OnInit {
     this.getData();
   }
 
+  alert:boolean=false;
   posts:any;
   up:any;
   blogId?: string | null;
+  isSubmitAllow =true;
 
   updateForm = new FormGroup({
     text: new FormControl('', Validators.required),
@@ -40,12 +42,21 @@ export class EditPostComponent implements OnInit {
     }
 
   update(){
+    this.isSubmitAllow = false;
     const headers = new HttpHeaders({"app-id": "63044dfc6a97404475895aa4"});
     const requestOptions = { headers: headers };
     let url="https://dummyapi.io/data/v1/post/" + this.blogId;
-    this.http.put(url,this.updateForm.value,requestOptions).subscribe((up : any) => {
-      window.location.reload()
+    this.http.put(url,this.updateForm.value,requestOptions).subscribe(() => {
+    this.isSubmitAllow = true;
+      this.getData()
+    this.alert=true
+    },err => {
+      this.isSubmitAllow = true;
     });
+  }
+
+  closeAlert(){
+    this.alert=false
   }
 
   ngOnInit(): void {
