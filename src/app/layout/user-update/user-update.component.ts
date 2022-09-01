@@ -20,7 +20,6 @@ export class UserUpdateComponent implements OnInit {
   updateForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
     picture: new FormControl('')
   });
 
@@ -38,7 +37,6 @@ export class UserUpdateComponent implements OnInit {
       this.updateForm = new FormGroup({
         firstName: new FormControl(posts.firstName),
         lastName: new FormControl(posts.lastName),
-        email: new FormControl(posts.email),
         picture: new FormControl(posts.picture)
       });
     });
